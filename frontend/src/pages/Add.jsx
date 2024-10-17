@@ -76,7 +76,7 @@ const Add = () => {
           name="cover"
         />
       </div>
-      <button onClick={handleClick}>ADD</button>
+      <button onClick={handleClick} className="add">ADD</button>
     </div>
   );
 };

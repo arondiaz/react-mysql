@@ -1,0 +1,49 @@
+.app {
+  height: 100vh;
+  padding: 0px 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.books {
+  display: flex;
+}
+
+.book {
+  flex: 1;
+}
+
+img {
+  width: 200px;
+  height: 300px;
+  object-fit: cover;
+  /* background-color: antiquewhite; */
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.form > input {
+  margin: 0.5rem 0;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border-color: black;
+  display: flex;
+  align-items: center;
+}
+
+.add {
+  border: none;
+  margin: 1rem;
+  background-color: purple;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
