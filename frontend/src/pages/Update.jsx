@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-
 const Update = () => {
+  const [oldData, setOldData] = useState({});
   const [input, setInput] = useState({
     title: "",
     description: "",
@@ -11,8 +11,22 @@ const Update = () => {
   });
 
   const navigate = useNavigate();
-  const params = useParams()
-  const idBook = params.id
+  const params = useParams();
+  const idBook = params.id;
+
+  useEffect(() => {
+    const url = `http://localhost:8800/update/${idBook}`;
+    const fetchOneBook = async () => {
+      try {
+        const res = await fetch(url);
+        const data = await res.json();
+        setOldData(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchOneBook();
+  }, [idBook]);
 
   const handleChange = (e) => {
     setInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -52,7 +66,18 @@ const Update = () => {
 
   return (
     <div>
-      <h1>Update new book!</h1>
+      <h1>Book to edit</h1>
+      {oldData && oldData.title ? (
+        <div>
+          {oldData.conver && <img src={oldData.cover} />}
+          <h3>{oldData.title}</h3>
+          <p>{oldData.description}</p>
+          <p>{oldData.price}</p>
+        </div>
+      ) : (
+        <p>Cargando datos del libro...</p>
+      )}
+      <h1>Update book!</h1>
       <div className="form">
         <input
           type="text"
@@ -79,7 +104,9 @@ const Update = () => {
           name="cover"
         />
       </div>
-      <button onClick={handleClick} className="add">UPDATE</button>
+      <button onClick={handleClick} className="add">
+        UPDATE
+      </button>
     </div>
   );
 };

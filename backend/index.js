@@ -60,7 +60,7 @@ app.get("/update/:id", (req, res) => {
   const q = "SELECT * FROM books WHERE id = ?";
   db.query(q, [bookToUpdate], (err, data) => {
     if (err) return res.json(err);
-    return res.json(data);
+    return res.json(data[0]);
   });
 });
 
